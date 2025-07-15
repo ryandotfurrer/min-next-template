@@ -4,15 +4,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   try {
+    const { slug } = await params;
     const { data: post } = await zenblog.posts.get({
-      slug: params.slug,
+      slug: slug,
     });
 
     if (!post) {

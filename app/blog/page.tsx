@@ -3,16 +3,17 @@ import { zenblog } from "@/lib/zenblog";
 import Link from "next/link";
 
 interface BlogPageProps {
-  searchParams: {
+  searchParams: Promise<{
     category?: string;
     tag?: string;
     author?: string;
     page?: string;
-  };
+  }>;
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const page = parseInt(searchParams.page || "1");
+  const resolvedSearchParams = await searchParams;
+  const page = parseInt(resolvedSearchParams.page || "1");
   const limit = 10;
   const offset = (page - 1) * limit;
 
@@ -20,9 +21,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     const { data: posts, total } = await zenblog.posts.list({
       limit,
       offset,
-      ...(searchParams.category && { category: searchParams.category }),
-      ...(searchParams.tag && { tags: [searchParams.tag] }),
-      ...(searchParams.author && { author: searchParams.author }),
+      ...(resolvedSearchParams.category && {
+        category: resolvedSearchParams.category,
+      }),
+      ...(resolvedSearchParams.tag && { tags: [resolvedSearchParams.tag] }),
+      ...(resolvedSearchParams.author && {
+        author: resolvedSearchParams.author,
+      }),
     });
 
     const totalPages = total ? Math.ceil(total / limit) : 1;
@@ -40,23 +45,25 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </div> */}
 
         {/* Filter indicators */}
-        {(searchParams.category || searchParams.tag || searchParams.author) && (
+        {(resolvedSearchParams.category ||
+          resolvedSearchParams.tag ||
+          resolvedSearchParams.author) && (
           <div className="mb-6 p-4 bg-gray-100 rounded-lg">
             <h3 className="font-semibold mb-2">Active Filters:</h3>
             <div className="flex gap-2 flex-wrap">
-              {searchParams.category && (
+              {resolvedSearchParams.category && (
                 <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                  Category: {searchParams.category}
+                  Category: {resolvedSearchParams.category}
                 </span>
               )}
-              {searchParams.tag && (
+              {resolvedSearchParams.tag && (
                 <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                  Tag: {searchParams.tag}
+                  Tag: {resolvedSearchParams.tag}
                 </span>
               )}
-              {searchParams.author && (
+              {resolvedSearchParams.author && (
                 <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
-                  Author: {searchParams.author}
+                  Author: {resolvedSearchParams.author}
                 </span>
               )}
               <Link
@@ -85,7 +92,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             {page > 1 && (
               <Link
                 href={`/blog?${new URLSearchParams({
-                  ...searchParams,
+                  ...resolvedSearchParams,
                   page: (page - 1).toString(),
                 }).toString()}`}
                 className="px-4 py-2 border rounded hover:bg-gray-50"
@@ -99,7 +106,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 <Link
                   key={pageNum}
                   href={`/blog?${new URLSearchParams({
-                    ...searchParams,
+                    ...resolvedSearchParams,
                     page: pageNum.toString(),
                   }).toString()}`}
                   className={`px-4 py-2 border rounded ${
@@ -116,7 +123,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             {page < totalPages && (
               <Link
                 href={`/blog?${new URLSearchParams({
-                  ...searchParams,
+                  ...resolvedSearchParams,
                   page: (page + 1).toString(),
                 }).toString()}`}
                 className="px-4 py-2 border rounded hover:bg-gray-50"
