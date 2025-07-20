@@ -1,11 +1,12 @@
 import RecentPosts from "@/components/recent-posts";
+import { metadata } from "@/app/layout";
 
 export default function Home() {
   return (
     <>
       <hgroup>
-        <h1>minfolio</h1>
-        <p>A simple blog built with Next.js and Zenblog.</p>
+        <h1>{metadata.title?.toString() || "nextzen"}</h1>
+        <p>{metadata.description}</p>
       </hgroup>
       <main className="space-y-8 my-12">
         <section>
