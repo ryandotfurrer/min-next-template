@@ -1,10 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and integrated with [Zenblog](https://zenblog.com) for content management.
+# nextzen
+
+Nextzen is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and integrated with [Zenblog](https://zenblog.com) for content management.
 
 ## Features
 
 - 🚀 Next.js 15 with App Router
 - 📝 Zenblog CMS integration for blog content
 - 🎨 Tailwind CSS for styling
+- 🛠️ shadcn/ui for components
 - 📱 Responsive design
 - 🔍 Blog post filtering by category, tags, and authors
 - 📄 Dynamic blog post pages
@@ -32,8 +35,8 @@ cp .env.example .env.local
 
 2. Get your Blog ID from your [Zenblog dashboard](https://app.zenblog.com) and update the `.env.local` file:
 
-```env
-NEXT_PUBLIC_ZENBLOG_BLOG_ID=your-actual-blog-id
+```.env.local
+NEXT_PUBLIC_ZENBLOG_BLOG_ID="YOUR_BLOG_ID_HERE"
 ```
 
 ### 3. Run the Development Server
@@ -77,7 +80,7 @@ This project uses the Zenblog headless CMS with the following features:
 
 ### Styling
 
-The blog uses Tailwind CSS for styling. You can customize the appearance by modifying the classes in:
+The blog uses Tailwind CSS for styling alongisde shadcn/ui. You can customize the appearance by modifying the classes in:
 
 - `/app/blog/page.tsx` - Blog listing page
 - `/app/blog/[slug]/page.tsx` - Individual blog post page
@@ -99,6 +102,7 @@ To learn more about the technologies used:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
 - [Zenblog Documentation](https://docs.zenblog.com) - learn about Zenblog CMS features
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs) - learn about styling
+- [shadcn/ui Documentation](https://ui.shadcn.com/docs) - learn about UI components
 
 ## Deploy on Vercel
 
@@ -106,4 +110,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Don't forget to add your `NEXT_PUBLIC_ZENBLOG_BLOG_ID` environment variable in your deployment settings.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out Vercel's [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
