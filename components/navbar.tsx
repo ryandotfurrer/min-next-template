@@ -9,7 +9,7 @@ export default function Navbar() {
           <div className="bg-primary rounded-full border size-8 hover:bg-brand hover:border-brand transition-colors" />
         </Link>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 text-sm">
         <ul className="flex gap-4">
           <li>
             <Link href="/blog" className="lowercase">

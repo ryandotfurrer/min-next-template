@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Footer() {
   return (
     <footer className="flex items-center justify-between pb-8 text-sm text-muted-foreground mt-12">
@@ -10,7 +8,6 @@ export default function Footer() {
             href="https://ryanfurrer.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline "
           >
             Ryan Furrer
           </a>
@@ -20,19 +17,34 @@ export default function Footer() {
       <div className="flex items-center gap-4">
         <ul className="flex gap-4">
           <li>
-            <Link href="/blog" className="lowercase">
-              Blog
-            </Link>
+            <a
+              href="https://github.com/ryandotfurrer/nextzen"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lowercase"
+            >
+              GitHub
+            </a>
           </li>
           <li>
-            <Link href="/about" className="lowercase">
-              About
-            </Link>
+            <a
+              href="https://www.linkedin.com/in/ryanfurrer/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lowercase"
+            >
+              LinkedIn
+            </a>
           </li>
           <li>
-            <Link href="/contact" className="lowercase">
-              Contact
-            </Link>
+            <a
+              href="https://x.com/ryandotfurrer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lowercase"
+            >
+              X (Twitter)
+            </a>
           </li>
         </ul>
       </div>
