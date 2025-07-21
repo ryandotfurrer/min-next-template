@@ -11,6 +11,9 @@ interface BlogPageProps {
   }>;
 }
 
+const PAGE_TITLE = "Blog";
+const PAGE_DESCRIPTION = "Write to your hearts content!";
+
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const resolvedSearchParams = await searchParams;
   const page = parseInt(resolvedSearchParams.page || "1");
@@ -33,16 +36,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     const totalPages = total ? Math.ceil(total / limit) : 1;
 
     return (
-      <div className="container mx-auto px-4 py-8">
-        {/* <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">Blog</h1>
-          <Link
-            href="/"
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
-            ←   Back to Home
-          </Link>
-        </div> */}
+      <>
+        <div>
+          <hgroup className="py-8 md:py-12 space-y-2">
+            <h1>{PAGE_TITLE}</h1>
+            <p>{PAGE_DESCRIPTION}</p>
+          </hgroup>
+        </div>
 
         {/* Filter indicators */}
         {(resolvedSearchParams.category ||
@@ -117,7 +117,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 >
                   {pageNum}
                 </Link>
-              )
+              ),
             )}
 
             {page < totalPages && (
@@ -133,7 +133,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             )}
           </div>
         )}
-      </div>
+      </>
     );
   } catch (error) {
     console.error("Error fetching blog posts:", error);

@@ -4,11 +4,11 @@ import { metadata } from "@/app/layout";
 export default function Home() {
   return (
     <>
-      <hgroup>
+      <hgroup className="py-8 md:py-12 space-y-2">
         <h1>{metadata.title?.toString() || "nextzen"}</h1>
         <p>{metadata.description}</p>
       </hgroup>
-      <main className="space-y-8 my-12">
+      <main className="space-y-8 md:space-y-24 lg:space-y-32 my-12">
         <section>
           <h2>Recent Posts</h2>
           <RecentPosts />

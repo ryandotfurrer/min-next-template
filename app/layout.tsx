@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "nextzen",
-  description: "Your place to be zen, powered by Next.js and Zenblog",
+  description:
+    "Your home on the internet, a place to be zen, powered by Next.js and Zenblog",
 };
 
 export default function RootLayout({
@@ -36,7 +37,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="max-w-screen-lg container mx-auto px-4 flex-1 flex flex-col">
+          <div className="max-w-prose container mx-auto px-4 flex-1 flex flex-col">
             <Navbar />
             <div className="flex-1">{children}</div>
             <Footer />

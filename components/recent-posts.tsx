@@ -17,41 +17,34 @@ export default async function RecentPosts() {
 
     return (
       <>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="space-y-12">
           {posts.map((post) => (
-            <Card key={post.slug} className="group p-0 gap-0">
-              <CardHeader className="p-0 overflow-auto rounded-t-xl">
-                <Image
-                  src={post.cover_image || ""}
-                  alt={post.title}
-                  width={300}
-                  height={200}
-                  className="w-full h-auto object-cover aspect-video"
-                />
-              </CardHeader>
-              <CardContent className="p-4">
-                <div className="flex justify-between mb-2">
-                  <CardTitle>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="border-b-2 border-foreground hover:text-brand transition-colors hover:border-brand"
-                    >
-                      {post.title}
-                    </Link>
+            <Link
+              href={`/blog/${post.slug}`}
+              key={post.slug}
+              className="block group"
+            >
+              <Card className="bg-unset border-none p-0 shadow-none gap-2">
+                <CardHeader className="flex items-center gap-x-4 p-0">
+                  <CardTitle className="group-hover:text-brand transition-colors">
+                    {post.title}
                   </CardTitle>
-                  <span className="text-sm text-muted-foreground num">
+                  <div className="w-full flex-1 h-px bg-border" />
+                  <span className="text-sm text-muted-foreground">
                     {new Intl.DateTimeFormat("en-US", {
                       year: "2-digit",
                       month: "numeric",
                       day: "numeric",
                     }).format(new Date(post.published_at))}
                   </span>
-                </div>
-                <CardDescription className="line-clamp-1">
-                  <p>{post.excerpt}</p>
-                </CardDescription>
-              </CardContent>
-            </Card>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <CardDescription className="line-clamp-2">
+                    <p className="!m-0">{post.excerpt}</p>
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </>
