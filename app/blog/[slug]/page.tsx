@@ -23,7 +23,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
     return (
       <div className="mt-8 md:mt-12">
-        <article className="prose dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-a:text-muted-foreground prose-a:hover:text-foreground prose-a:transition-colors prose-p:text-muted-foreground">
+        <article className="prose prose-neutral dark:prose-invert prose-img:rounded-lg prose-pre:rounded-lg prose-pre:border prose-a:text-muted-foreground prose-a:hover:text-foreground prose-a:transition-colors prose-p:text-muted-foreground">
           <header>
             <hgroup className="leading-none">
               <h1>{post.title}</h1>
